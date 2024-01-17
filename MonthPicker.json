@@ -1,0 +1,260 @@
+{
+    "eula": "",
+    "vendor": "Danny Brassil",
+    "license": "",
+    "id": "month.picker2",
+    "version": "1.0.0",
+    "name": "Standard Month Picker",
+    "newInstancePrefix": "MonthPicker2",
+    "description": "A month selection range Picker",
+    "webcomponents": [
+      {
+        "kind": "main",
+        "tag": "month-picker2-main",
+        "url": "/main.js",
+        "integrity": "",
+        "ignoreIntegrity": true
+      },
+      {
+        "kind": "styling",
+        "tag": "com-sap-sample-coloredbox2-styling",
+        "url": "/styling.js",
+        "integrity": "",
+        "ignoreIntegrity": true
+      }
+    ],
+    "properties": {
+      "showApplyButton": {
+        "type": "boolean",
+        "description": "true or false value to show or hide apply button ",
+        "default": true
+      },
+      "selectedAction": {
+        "type": "string",
+        "description": "holds a string representation of wheather apply or reset is clicked",
+        "default": ""
+      },
+      "selectedTimeFrame": {
+        "type": "string",
+        "description": "holds a string representation of the time frame selected",
+        "default": ""
+      },
+      "color": {
+        "type": "string",
+        "description": "Background color",
+        "default": "red"
+      },
+      "startPeriod": {
+        "type": "string",
+        "description": "Start Period",
+        "default": "01.2023"
+      },
+      "endPeriod": {
+        "type": "string",
+        "description": "End Period",
+        "default": "009.2023"
+      },
+      "startYear": {
+        "type": "string",
+        "description": "Start Year",
+        "default": "2023"
+      },
+      "endYear": {
+        "type": "string",
+        "description": "End Year",
+        "default": "2023"
+      },
+      "startMonth": {
+        "type": "string",
+        "description": "Start Month",
+        "default": "001"
+      },
+      "endMonth": {
+        "type": "string",
+        "description": "End Month",
+        "default": "009"
+      },
+      "width": {
+        "type": "integer",
+        "default": 570
+      },
+      "height": {
+        "type": "integer",
+        "default": 270
+      }
+    },
+    "methods": {
+
+      "setShowApplyButton": {
+        "description": "Set true to show apply button, set false to hide apply button.",
+        "parameters": [
+          {
+            "name": "newShowApplyButton",
+            "type": "boolean",
+            "description": "true/false to show"
+          }
+        ],
+        "body": "this.showApplyButton = newShowApplyButton;"
+      },
+      "getShowApplyButton": {
+        "returnType": "boolean",
+        "description": "Returns true or false if apply button is shown.",
+        "body": "return this.showApplyButton;"
+      },
+      
+      "setColor": {
+        "description": "Sets the background color.",
+        "parameters": [
+          {
+            "name": "newColor",
+            "type": "string",
+            "description": "The new background color"
+          }
+        ],
+        "body": "this.color = newColor;"
+      },
+      "getColor": {
+        "returnType": "string",
+        "description": "Returns the background color.",
+        "body": "return this.color;"
+      },
+      "setStartPeriod": {
+        "description": "Sets the Start Period.",
+        "parameters": [
+          {
+            "name": "newStartPeriod",
+            "type": "string",
+            "description": "The new Start Period"
+          }
+        ],
+        "body": "this.startPeriod = newStartPeriod;"
+      },
+      "getStartPeriod": {
+        "returnType": "string",
+        "description": "Returns the Start Period.",
+        "body": "return this.startPeriod;"
+      },
+      "setEndPeriod": {
+        "description": "Sets the end Period.",
+        "parameters": [
+          {
+            "name": "newEndPeriod",
+            "type": "string",
+            "description": "The new end Period"
+          }
+        ],
+        "body": "this.endPeriod = newEndPeriod;"
+      },
+      "getEndPeriod": {
+        "returnType": "string",
+        "description": "Returns the end Period.",
+        "body": "return this.endPeriod;"
+      },
+      "setStartMonth": {
+        "description": "Sets the start Month.",
+        "parameters": [
+          {
+            "name": "newStartMonth",
+            "type": "string",
+            "description": "The new start month"
+          }
+        ],
+        "body": "this.startMonth = newStartMonth;"
+      },
+      "getStartMonth": {
+        "returnType": "string",
+        "description": "Returns the start Month.",
+        "body": "return this.startMonth;"
+      },
+      "setStartYear": {
+        "description": "Sets the Start Year.",
+        "parameters": [
+          {
+            "name": "newStartYear",
+            "type": "string",
+            "description": "The new start year"
+          }
+        ],
+        "body": "this.startYear = newStartYear;"
+      },
+      "getStartYear": {
+        "returnType": "string",
+        "description": "Returns the start year.",
+        "body": "return this.startYear;"
+      },
+      "setEndMonth": {
+        "description": "Sets the end Month.",
+        "parameters": [
+          {
+            "name": "newEndMonth",
+            "type": "string",
+            "description": "The new end month"
+          }
+        ],
+        "body": "this.endMonth = newEndMonth;"
+      },
+      "getEndMonth": {
+        "returnType": "string",
+        "description": "Returns the end Month.",
+        "body": "return this.endMonth;"
+      },
+      "setEndYear": {
+        "description": "Sets the end Year.",
+        "parameters": [
+          {
+            "name": "newEndYear",
+            "type": "string",
+            "description": "The new end year"
+          }
+        ],
+        "body": "this.endYear = newEndYear;"
+      },
+      "getEndYear": {
+        "returnType": "string",
+        "description": "Returns the end year.",
+        "body": "return this.endYear;"
+      },
+      "setSelectedAction": {
+        "description": "Sets the selected Action.",
+        "parameters": [
+          {
+            "name": "newSelectedAction",
+            "type": "string",
+            "description": "The new selected Action"
+          }
+        ],
+        "body": "this.selectedAction = newSelectedAction;"
+      },
+      "getSelectedAction": {
+        "returnType": "string",
+        "description": "Returns the selected Action.",
+        "body": "return this.selectedAction;"
+      },
+      "setSelectedTimeFrame": {
+        "description": "Sets the selected time frame.",
+        "parameters": [
+          {
+            "name": "newSelectedTimeFrame",
+            "type": "string",
+            "description": "The new selected time frame"
+          }
+        ],
+        "body": "this.selectedTimeFrame = newSelectedTimeFrame;"
+      },
+      "getSelectedTimeFrame": {
+        "returnType": "string",
+        "description": "Returns the selected time frame.",
+        "body": "return this.selectedTimeFrame;"
+      }
+    },
+    "events": {
+      "onClick": {
+        "description": "Called when the user clicks."
+      },
+      "resetClicked": {
+        "description": "Called when the user clicks reset."
+      }
+    }
+  }
+
+
