@@ -139,6 +139,10 @@
       height: 100%;
     }
 
+    .button:hover {
+      background-color: rgba(52, 152, 219, 0.5); /* Transparent blue color */
+    }
+
     .button
     {
       display: inline-block;
@@ -1461,7 +1465,7 @@ body {font-family: Verdana, sans-serif;}
           }
 
         } else if (temp === "Reset") {
-          changedProperties["selectedTimeFrame"] = this.ResetActiveButton
+          changedProperties["selectedTimeFrame"]
           //var time = this.selectedTimeFrame//changedProperties["selectedTimeFrame"];
           var time = this.ResetActiveButton;
           if (time === "_YTDButton") {
