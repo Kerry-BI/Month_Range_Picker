@@ -275,6 +275,12 @@ body {font-family: Verdana, sans-serif;}
   font-weight: bold;
   font-size:14px;
   color: #777;
+  --x-px: calc(var(--x) * 1px);
+  --y-px: calc(var(--y) * 1px);
+}
+
+.monthsdiv:hover {
+  background-color: rgba(52, 152, 219, 0.5); /* Transparent blue color */
 }
 
 /* Highlight the "current" day */
@@ -377,6 +383,8 @@ body {font-family: Verdana, sans-serif;}
       this.SingleMonthButton.addEventListener('click', this._toggleOptionButton.bind(this, this.SingleMonthButton, this.gDisplayText));
       this.MATButton = this._shadowRoot.getElementById('MATButton');
       this.MATButton.addEventListener('click', this._toggleOptionButton.bind(this, this.MATButton, this.gDisplayText));
+
+      this.activeButton = this._YTDButton;
 
       //month buttons
       left_1 = this._shadowRoot.getElementById('left_1');
@@ -543,6 +551,7 @@ body {font-family: Verdana, sans-serif;}
     }
 
     _submitReset(e) {
+      console.log("SUBMIT RESET CLICKED + "+ this.ResetActiveButton)
       e.preventDefault();
       this.dispatchEvent(new CustomEvent("propertiesChanged", {
         detail: {
@@ -1242,7 +1251,7 @@ body {font-family: Verdana, sans-serif;}
               startYear: this.startYear,
               endMonth: this.endMonth,
               endYear: this.endYear,
-              selectedTimeFrame: this.selectedTimeFrame
+             // selectedTimeFrame: this.selectedTimeFrame
             }
           }
         }));
@@ -1323,7 +1332,7 @@ body {font-family: Verdana, sans-serif;}
       return this._getYear(this.gStartPeriod);
     }
     get selectedTimeFrame() {
-      return this.ResetActiveButton;
+      return this.activeButton.id;
     }
 
 
@@ -1389,7 +1398,7 @@ body {font-family: Verdana, sans-serif;}
               startYear: this.startYear,
               endMonth: this.endMonth,
               endYear: this.endYear,
-              selectedTimeFrame: this.selectedTimeFrame
+              //selectedTimeFrame: this.selectedTimeFrame
             }
           }
         }));
@@ -1452,8 +1461,9 @@ body {font-family: Verdana, sans-serif;}
           }
 
         } else if (temp === "Reset") {
-          var time = this.selectedTimeFrame//changedProperties["selectedTimeFrame"];
-
+          changedProperties["selectedTimeFrame"] = this.ResetActiveButton
+          //var time = this.selectedTimeFrame//changedProperties["selectedTimeFrame"];
+          var time = this.ResetActiveButton;
           if (time === "_YTDButton") {
             this._updateSelectedOptionOnResetAction(this._YTDButton);
           } else if (time === "DETButton") {
@@ -1508,7 +1518,8 @@ body {font-family: Verdana, sans-serif;}
         button1.classList.add("active");
         this.activeButton = button1;
       } else {
-        this.activeButton = null;
+        //this.activeButton = null;
+        button1.classList.add("active");
       }
     }
 

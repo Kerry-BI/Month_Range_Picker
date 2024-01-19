@@ -37,7 +37,7 @@
       "selectedTimeFrame": {
         "type": "string",
         "description": "holds a string representation of the time frame selected",
-        "default": ""
+        "default": "_YTDButton"
       },
       "color": {
         "type": "string",
