@@ -58,7 +58,7 @@
 		</form>
 	`;
 
-	class ColoredBoxStylingPanel2 extends HTMLElement {
+	class stylingMonthPicker extends HTMLElement {
 		constructor() {
 			super();
 			this._shadowRoot = this.attachShadow({mode: "open"});
@@ -180,5 +180,5 @@
 		}
 	}
 
-customElements.define("com-sap-sample-coloredbox2-styling", ColoredBoxStylingPanel2);
+customElements.define("month-picker-styling", stylingMonthPicker);
 })();

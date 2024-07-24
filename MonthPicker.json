@@ -2,32 +2,37 @@
     "eula": "",
     "vendor": "Danny Brassil",
     "license": "",
-    "id": "month.picker2",
+    "id": "month.picker",
     "version": "1.0.0",
-    "name": "Standard Month Picker",
-    "newInstancePrefix": "MonthPicker2",
-    "description": "A month selection range Picker",
+    "name": "Month Range Selector",
+    "newInstancePrefix": "MonthPicker",
+    "description": "month selection range Picker",
     "webcomponents": [
       {
         "kind": "main",
-        "tag": "month-picker2-main",
+        "tag": "month-picker-main",
         "url": "/main.js",
         "integrity": "",
         "ignoreIntegrity": true
       },
       {
         "kind": "styling",
-        "tag": "com-sap-sample-coloredbox2-styling",
+        "tag": "month-picker-styling",
         "url": "/styling.js",
         "integrity": "",
         "ignoreIntegrity": true
       }
     ],
     "properties": {
+      "options": {
+        "type":"string[]",
+        "description": "the options in the month picker you want to make available options =['YTD','DET','MAT','QTD','MQT','PTD'] ",
+			  "default": ["YTD", "DET","MAT", "QTD","MQT", "PTD"]
+      },
       "showApplyButton": {
         "type": "boolean",
         "description": "true or false value to show or hide apply button ",
-        "default": true
+        "default": false
       },
       "selectedAction": {
         "type": "string",
@@ -37,7 +42,7 @@
       "selectedTimeFrame": {
         "type": "string",
         "description": "holds a string representation of the time frame selected",
-        "default": "_YTDButton"
+        "default": ""
       },
       "color": {
         "type": "string",
@@ -76,15 +81,30 @@
       },
       "width": {
         "type": "integer",
-        "default": 570
+        "default": 650
       },
       "height": {
         "type": "integer",
-        "default": 270
+        "default": 400
       }
     },
     "methods": {
-
+      "setOptions": {
+        "description": "Sets the array that feeds the options shown in the month picker.",
+        "parameters": [
+          {
+            "name": "newOptions",
+            "type":"string[]",
+            "description": "The new array for the options in the month picker "
+          }
+        ],
+        "body": "this.options = newOptions;"
+      },
+      "getOptions": {
+        "returnType": "string[]",
+        "description": "Returns the drillpath options that are shown in the month picker.",
+        "body": "return this.options;"
+      },
       "setShowApplyButton": {
         "description": "Set true to show apply button, set false to hide apply button.",
         "parameters": [

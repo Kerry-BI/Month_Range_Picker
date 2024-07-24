@@ -3,6 +3,8 @@
 (function () {
   const template = document.createElement('template')
   template.innerHTML = `
+  <body>
+  <div id="main" style="width: 650px; height: 400px;">
     <div class="popup-background" id="popup-background"></div>
 
     <div class="popup" id="popup">
@@ -60,11 +62,9 @@
       </div> 
 
       <div id="Column4"> 
-        <div class="buttonrow" style="width: 99%; height: 12%;">
-          <div id="options">
-            <b>Options</b>
-          </div> 
-            <div id="_YTDButton" class="button">YTD</div>
+         <div class="buttonrow" style="width: 99%; height: 15%;">
+            <div id="options"><b>Options</b></div> 
+            <div id="YTDButton" class="button">YTD</div>
             <div id="DETButton" class="button">Detail</div>
             <div id="MATButton" class="button">MAT</div>
             <div id="QTDButton" class="button">QTD</div>
@@ -73,13 +73,31 @@
           </div>
         </div> 
     </div> 
-  </div>
 
-  <div id="TileBottom" style="width: 99%; height: 10%;"> 
-    <div id ="displayDates"> Select Dates... </div>
-    <div id="Apply"><button id="ApplyButton">Apply</button></div> 
-    <div id="reset"><button id="ResetButton">Reset</button></div> 
-  </div>
+
+ <div id="TileBottom" style="width: 99%; height: 10%;"> 
+<div id="reset"><button id="ResetButton"class="button-22" role="button">Reset</button></div>
+
+  <div id="displayDates" class="date-range-box">
+  <div class="date-input">
+  <input type="text" id="fromDate" placeholder="From Date" readonly>
+  <span class="calendar-icon">&#128197;</span>
+</div>
+<span class="dash-icon">&#8211;</span>
+<div class="date-input">
+  <input type="text" id="toDate" placeholder="To Date" readonly>
+  <span class="calendar-icon">&#128197;</span>
+</div>
+</div> 
+  <div id="Apply"><button id="ApplyButton">Apply</button></div>
+</div>
+<div class="date-input" id="gdisplaytext">Select Dates...</div>
+</div>
+
+
+
+</div>
+</body>
 
   <style>
     /*style of column 3 (apply button, time options)*/
@@ -109,15 +127,109 @@
       -moz-transition: same!
       -o-transition: same!
     }
+
     .popup-background.visible {
       display: block;
       opacity: .6;
     }
 
+    /* CSS */
+.button-22 {
+  align-items: center;
+  appearance: button;
+  background-color: #046d9e;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-family: "RM Neue",sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  padding: 5px 20px;
+  text-align: center;
+  text-transform: none;
+  transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-22:active {
+  background-color: #006AE8;
+}
+
+.button-22:hover {
+  background-color: #1C84FF;
+}
+    .button.active
+    {
+    background-color: #046d9e;
+    color: white;
+    }
+   
+
+    #buttonrow
+    {
+    width:100%;
+    height: 15%;
+    text-align: center;
+    }
+
+   .date-range-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: 0px;
+  width: 195px;
+  margin: 20px auto;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.dash-icon {
+  margin: 0 10px; /* Adjust spacing between the date inputs */
+}
+
+.date-input {
+  position: relative;
+}
+
+.date-input input[type="text"] {
+  width: 130px; /* Adjust width as needed */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.date-input .calendar-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  cursor: pointer;
+}
+
+/* Additional styles for the calendar icon */
+.date-input .calendar-icon:before {
+  content: "";
+}
+
+
+
+
     /*style for Apply button*/
     #ApplyButton{
       background-color: #046d9e;
       Color: white;
+      visibility: hidden;
     }
 
     #displayDates{
@@ -127,16 +239,23 @@
     }
 
     #ApplyButton, #ResetButton{
-        margin-left: 10px;   
-        margin-right: 20px;
-        width: 80%;
-        border-radius: 4px;
+      margin-left: 20px;
+      text-align: center;
+      margin-right: 20px;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
     }
 
     #options{
-      padding: 3% 10%;
+      /* padding: 3% 10%; */
       text-align: center;
-      height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     }
 
     .button:hover {
@@ -145,10 +264,13 @@
 
     .button
     {
-      display: inline-block;
+      display: flex;
       text-align: center;
+      margin: auto;
+      align-items: center;
+      justify-content: center;
       width: 100%;
-      height: 100%;
+      height: 94%;
       background-color: white;
       font-weight: normal;
     }
@@ -162,9 +284,9 @@
 
     #buttonrow
     {
-        width:100%;
-        text-align: center;
-      
+    width:100%;
+    height: 15%;
+    text-align: center;
     }
 
     #Tile {
@@ -177,11 +299,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-style: solid;
+    /* border-style: solid; */
     background-color: #ffffff;
-    border-radius: 3px;
-    border: 1px solid black;
+    /* border-radius: 3px; */
+    /* border: 1px solid black; */
     bottom: 0;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
 }
 
   #Column2 {
@@ -189,7 +314,7 @@
       border-left: 1px solid #FF0000;
       float: right;
       text-align: center;
-      width: 40%;
+      width: 41%;
       height: 100%;
       border-color: black;
       background-color: white !important;
@@ -198,7 +323,7 @@
    #Column3 {
       float: right;
       border-left: 1px solid #FF0000;
-      width: 40%;
+      width: 41%;
       height: 100%;
       border-color: black;
       background-color: white !important;
@@ -206,10 +331,10 @@
   }
 
   #Column4 {
-    /*width: 19.8%;*/
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
+    align-items: center;
     justify-content: center;
     height: 100%;
     border-color: black;
@@ -238,22 +363,28 @@ body {font-family: Verdana, sans-serif;}
 
 .month ul li {
   color: white;
-  font-size: 20px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  padding-top: 3%;
+    display: flex;
+    font-size: 25px !important;
+    text-transform: uppercase;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 3px;
+    padding-top: 5%;
 }
 
 /* Previous button inside month header */
 .month .prev {
   float: left;
   padding-left: 20%;
+      padding-top: 3%;
 }
 
 /* Next button */
 .month .next {
   float: right;
   padding-right: 20%;
+      padding-top: 3%;
 }
 
 /* Days (1-31) */
@@ -325,7 +456,7 @@ body {font-family: Verdana, sans-serif;}
   var left_1, left_2, left_3, left_4, left_5, left_6, left_7, left_8, left_9, left_10, left_11, left_12;
   var right_1, right_2, right_3, right_4, right_5, right_6, right_7, right_8, right_9, right_10, right_11, right_12;
   var currentYear;
-  let activeButton = null;
+  var activeButton = null;
   var months;
   // var MP_MaxAllowedPeriodSelections=12;
   var gPeriodCharLength = 0;
@@ -335,7 +466,7 @@ body {font-family: Verdana, sans-serif;}
   var monthButtons;
 
 
-  class MonthPicker2 extends HTMLElement {
+  class MonthPicker extends HTMLElement {
     constructor() {
       super()
       //create the shadow root for DOM
@@ -362,21 +493,26 @@ body {font-family: Verdana, sans-serif;}
       this.gEndPeriod = "";
       this.applyButton;
 
-      this.ResetActiveButton = "_YTDButton"; // holds the current value of the selected option 
-
+      this.startPeriodSAC="";
+      this.endPeriodSAC="";
+     
       //initialise funtion to initialise varibles and component on startup
       currentYear = new Date().getFullYear();
 
       //text area where the selected dates is displayed at bottom of component
-      this.gDisplayText = this._shadowRoot.getElementById('displayDates');
+      this.gDisplayText = this._shadowRoot.getElementById('gdisplaytext');
+         this.gDisplayText.style.display = "none";
+
+         this.gFromDate = this._shadowRoot.getElementById('fromDate');
+         this.gToDate = this._shadowRoot.getElementById('toDate');
 
       var MP_MaxAllowedPeriodSelections = 12;
 
       this.nextbuttonText = this._shadowRoot.getElementById('nextbuttonText');
       this.prevoiusbuttonText = this._shadowRoot.getElementById('PreviousButtonText');
 
-      this._YTDButton = this._shadowRoot.getElementById('_YTDButton');
-      this._YTDButton.addEventListener('click', this._toggleOptionButton.bind(this, this._YTDButton, this.gDisplayText));
+      this.YTDButton = this._shadowRoot.getElementById('YTDButton');
+      this.YTDButton.addEventListener('click', this._toggleOptionButton.bind(this, this.YTDButton, this.gDisplayText));
       this.QTDButton = this._shadowRoot.getElementById('QTDButton');
       this.QTDButton.addEventListener('click', this._toggleOptionButton.bind(this, this.QTDButton, this.gDisplayText));
       this.MQTButton = this._shadowRoot.getElementById('MQTButton');
@@ -388,7 +524,9 @@ body {font-family: Verdana, sans-serif;}
       this.MATButton = this._shadowRoot.getElementById('MATButton');
       this.MATButton.addEventListener('click', this._toggleOptionButton.bind(this, this.MATButton, this.gDisplayText));
 
-      this.activeButton = this._YTDButton;
+       this.ResetActiveButton; // holds the current value of the selected option 
+      this.activeButton;
+
 
       //month buttons
       left_1 = this._shadowRoot.getElementById('left_1');
@@ -417,7 +555,7 @@ body {font-family: Verdana, sans-serif;}
       right_12 = this._shadowRoot.getElementById('right_12');
 
 
-      //add onlclick event listener to the month buttons 
+      //add onClick event listener to the month buttons 
       left_1.addEventListener('click', this._buttonClicked.bind(this, left_1, this.gDisplayText, this.prevoiusbuttonText, this.nextbuttonText));
       left_2.addEventListener('click', this._buttonClicked.bind(this, left_2, this.gDisplayText, this.prevoiusbuttonText, this.nextbuttonText));
       left_3.addEventListener('click', this._buttonClicked.bind(this, left_3, this.gDisplayText, this.prevoiusbuttonText, this.nextbuttonText));
@@ -444,6 +582,7 @@ body {font-family: Verdana, sans-serif;}
       right_12.addEventListener('click', this._buttonClicked.bind(this, right_12, this.gDisplayText, this.prevoiusbuttonText, this.nextbuttonText));
 
       months = this._shadowRoot.getElementById('months');
+      this.optionsbuttons = this._shadowRoot.querySelectorAll('.button');
 
       this._root = this._shadowRoot.getElementById('column2');
 
@@ -456,7 +595,7 @@ body {font-family: Verdana, sans-serif;}
       //apply and reset buttons event listeners
       this.applyButton = this._shadowRoot.getElementById("ApplyButton");
       this.applyButton.addEventListener("click", this._submitApply.bind(this, this.gDisplayText));
-      resetButton = this._shadowRoot.getElementById("ResetButton").addEventListener("click", this._submitReset.bind(this));
+      this.resetButton = this._shadowRoot.getElementById("ResetButton").addEventListener("click", this._submitReset.bind(this));
 
       //pop up buttons  event listeners
       this.popup = this._shadowRoot.getElementById("popup");
@@ -482,6 +621,8 @@ body {font-family: Verdana, sans-serif;}
 
     //change the selected time period option
     _toggleOptionButton(button1) {
+      this.gStartPeriod="";//test
+            this.gEndPeriod="";//test
       this._clearSelections(this.gDisplayText);
       if (this.activeButton !== null) {
         this.activeButton.classList.remove("active");
@@ -492,6 +633,9 @@ body {font-family: Verdana, sans-serif;}
       } else {
         this.activeButton = null;
       }
+
+      this._setDateText();
+      
     }
 
     //called when a month button is clicked 
@@ -500,7 +644,7 @@ body {font-family: Verdana, sans-serif;}
         this._setSinglePeriod(ButtonName, this.gDisplayText, this.prevoiusbuttonText, this.nextbuttonText);
         this._setDateText(this.gDisplayText);
       }
-      else if (this.activeButton.id === "_YTDButton") {
+      else if (this.activeButton.id === "YTDButton") {
         this._changeState_YTD(ButtonName, this.gDisplayText, this.prevoiusbuttonText, this.nextbuttonText);
       }
       else if (this.activeButton.id === "MQTButton") {
@@ -539,6 +683,15 @@ body {font-family: Verdana, sans-serif;}
       this.nextbuttonText.innerText = year;
     }
 
+    _setResetTime() {
+      //get current year and set it as right . set the left year to the right -1 
+      var year = parseInt(this.endYear)
+      var prevYear = (year - 1);
+      this.prevoiusbuttonText.innerText = prevYear;
+      this.nextbuttonText.innerText = year;
+      currentYear=year;
+    }
+
     _clearPeriodCSS() {
       //clear all the css 
       for (var i = 0; i < this.monthButtons.length; i++) {
@@ -554,25 +707,49 @@ body {font-family: Verdana, sans-serif;}
       this.gDisplayText.innerText = "Select dates...";
     }
 
+    //called when reset button is pressed 
     _submitReset(e) {
-      console.log("SUBMIT RESET CLICKED + "+ this.ResetActiveButton)
-      e.preventDefault();
-      this.dispatchEvent(new CustomEvent("propertiesChanged", {
-        detail: {
-          properties: {
-            selectedTimeFrame: this.ResetActiveButton,
-            startPeriod: this.startPeriod,
-            endPeriod: this.endPeriod,
-            startMonth: this.startMonth,
-            startYear: this.startYear,
-            endMonth: this.endMonth,
-            endYear: this.endYear,
-            selectedAction: "Reset",
+      console.log("NEW START AND END submit reset 1 = "+ this.startPeriod +" - "+ this.endPeriod);
+      console.log("NEW START AND END submit reset 2 = "+ this.gStartPeriod +" - "+ this.gEndPeriod);
+      
+    //currentYear = parseInt(this.endYear);
+      console.log("_submitReset function called = "+ this.ResetActiveButton)
+      this.gStartPeriod=this.startPeriodSAC;
+      this.gEndPeriod=this.endPeriodSAC;
+     // this.activeButton = this.ResetActiveButton;
+     this._setResetTime();
+     if(this.activeButton!==null){this.activeButton.classList.remove("active");}
+      this.activeButton = this.ResetActiveButton;
+      this.activeButton.classList.add("active");
+      this._setCSSBetween(this.gDisplayText, this.prevoiusbuttonText, this.nextbuttonText);
+    }
 
+      //called when apply button is clicked
+    //
+    _submitApply(e) {
+      // if (this.startPeriod !== "" && this.endPeriod !== "") {
+      //   this.ResetActiveButton = this.activeButton.id
+      // } else {
+      //   this.ResetActiveButton = "YTDButton";
+      // }
+    //  e.preventDefault();
+
+      if (this.gDisplayText === "Select Dates..." || this.gEndPeriod === "select end" || this.gEndPeriod === "") {
+        //display error popup 
+        this._submitReset()
+      } else {
+        this.startPeriodSAC=this.gStartPeriod;
+        this.endPeriodSAC=this.gEndPeriod;
+        this.dispatchEvent(new CustomEvent("propertiesChanged", {
+          detail: {
+            properties: {
+              selectedTimeFrame: this.selectedTimeFrame,
+              startPeriod: this.startPeriod,
+              endPeriod: this.endPeriod,
+            }
           }
-        }
-      }));
-
+        }));
+      }
     }
 
 
@@ -1030,7 +1207,7 @@ body {font-family: Verdana, sans-serif;}
 
       if (this.activeButton.id === "DETButton") {
         this._setCSSBetween(this.gDisplayText, this.prevoiusbuttonText, this.nextbuttonText);
-      } else if (this.activeButton.id === "_YTDButton") {
+      } else if (this.activeButton.id === "YTDButton") {
         this._setCSSBetween_YTD(this.prevoiusbuttonText, this.nextbuttonText);
       } else if (this.activeButton.id === "MATButton") {
         this._setCSSBetween_MAT(this.gDisplayText, this.prevoiusbuttonText, this.nextbuttonText);
@@ -1157,13 +1334,16 @@ body {font-family: Verdana, sans-serif;}
 
       for (var i = 0; i < this.monthButtons.length; i++) {
         var temp = this.monthButtons[i].id;
+        console.log("idex = "+i+" / temp = "+temp);
 
         if (temp.indexOf(buttonString) !== -1 && parseInt(period) === 1 && parseInt(temp.split("_")[1]) === 1) {
           this.monthButtons[i].classList.add("periodSelectStartAndEndDark");
+          console.log("periodSelectStartAndEndDark "+temp);
         } else if (
           temp.indexOf(buttonString) !== -1 && parseInt(period) !== 1 && parseInt(temp.split("_")[1]) === 1
         ) {
           this.monthButtons[i].classList.add("periodSelectStartLight");
+          console.log("periodSelectStartLight  "+temp);
         } else if (
           temp.indexOf(buttonString) !== -1 && parseInt(period) !== 1 && parseInt(temp.split("_")[1]) > parseInt(period)
         ) {
@@ -1171,10 +1351,12 @@ body {font-family: Verdana, sans-serif;}
           temp.indexOf(buttonString) !== -1 && parseInt(period) !== 1 && parseInt(temp.split("_")[1]) !== parseInt(period)
         ) {
           this.monthButtons[i].classList.add("periodSelectBetweenLight");
+          console.log("periodSelectBetweenLight  "+temp);
         } else if (
           temp.indexOf(buttonString) !== -1 && parseInt(period) !== 1 && parseInt(temp.split("_")[1]) === parseInt(period)
         ) {
           this.monthButtons[i].classList.add("periodSelectEndDark");
+          console.log("periodSelectEndDark  "+temp);
         } else {
         }
       }
@@ -1245,6 +1427,8 @@ body {font-family: Verdana, sans-serif;}
           //  DatesPickedText_MP.applyText(gYMStartPeriod + "  ->  " + gYMEndPeriod);
         }
         this.gDisplayText.innerText = this.gStartPeriod + "  ->  " + this.gEndPeriod;
+        this.gFromDate.value = this.gStartPeriod;
+        this.gToDate.value = this.gEndPeriod;
 
         this.dispatchEvent(new CustomEvent("propertiesChanged", {
           detail: {
@@ -1267,10 +1451,14 @@ body {font-family: Verdana, sans-serif;}
           //  DatesPickedText_MP.applyText(gYMStartPeriod + "  ->  " + "select end");
         }
         this.gDisplayText.innerText = this.gStartPeriod + "  ->  " + "select end";
+        this.gFromDate.value = this.gStartPeriod;
+            this.gToDate.value = "To Date";
       }
       else if (populatedPeriods === "") {
         //DatesPickedText_MP.applyText("Select Dates...");
         this.gDisplayText.innerText = "Select Dates...";
+        this.gFromDate.value = "From Date";
+            this.gToDate.value = "To Date";
       }
 
     }
@@ -1289,35 +1477,7 @@ body {font-family: Verdana, sans-serif;}
       return result;
     }
 
-    //called when apply button is clicked
-    _submitApply(gDisplayText, e) {
-      if (this.startPeriod !== "" && this.endPeriod !== "") {
-        this.ResetActiveButton = this.activeButton.id
-      } else {
-        this.ResetActiveButton = "_YTDButton";
-      }
-      e.preventDefault();
-
-      if (this.gDisplayText === "Select dates" || this.gEndPeriod === "select end" || this.gEndPeriod === "") {
-        //display error popup 
-        this._showPopup();
-      } else {
-        this.dispatchEvent(new CustomEvent("propertiesChanged", {
-          detail: {
-            properties: {
-              startPeriod: this.startPeriod,
-              endPeriod: this.endPeriod,
-              startMonth: this.startMonth,
-              startYear: this.startYear,
-              endMonth: this.endMonth,
-              endYear: this.endYear,
-              selectedAction: "Apply",
-              selectedTimeFrame: this.selectedTimeFrame
-            }
-          }
-        }));
-      }
-    }
+  
 
     get startPeriod() {
       return this.gStartPeriod;
@@ -1353,6 +1513,69 @@ body {font-family: Verdana, sans-serif;}
 
     onCustomWidgetAfterUpdate(changedProperties, gDisplayText, prevoiusbuttonText, nextbuttonText) {
 
+      if ("options" in changedProperties) {
+        var options = changedProperties["options"];
+        if(!options.includes('YTD')){
+          this.YTDButton.parentNode.removeChild(this.YTDButton);
+        }
+        if(!options.includes('DET')){
+          this.DetailButton.parentNode.removeChild(this.DetailButton);
+        }
+        if(!options.includes('MAT')){
+          this.MATButton.parentNode.removeChild(this.MATButton);
+        }
+        if(!options.includes('QTD')){
+          this.QTDButton.parentNode.removeChild(this.QTDButton);
+        }
+        if(!options.includes('MQT')){
+          this.MQTButton.parentNode.removeChild(this.MQTButton);
+        }
+        if(!options.includes('PTD')){
+          this.SingleMonthButton.parentNode.removeChild(this.SingleMonthButton);
+        }
+
+        
+        
+        switch(options.length) {
+          case 1:
+            for(var i = 0; i < this.optionsbuttons.length; i++) {
+              this.optionsbuttons[i].style.height = '189%'; // Change '50px' to the height you want
+          }
+            break;
+          case 2:
+            for(var i = 0; i < this.optionsbuttons.length; i++) {
+              this.optionsbuttons[i].style.height = '284%'; // Change '50px' to the height you want
+          }
+            
+            break;
+          case 3:
+            for(var i = 0; i < this.optionsbuttons.length; i++) {
+              this.optionsbuttons[i].style.height = '189%'; // Change '50px' to the height you want
+          }
+            
+            break;
+          case 4:
+            for(var i = 0; i < this.optionsbuttons.length; i++) {
+              this.optionsbuttons[i].style.height = '142%'; // Change '50px' to the height you want
+          }
+            break;
+          case 5:
+            for(var i = 0; i < this.optionsbuttons.length; i++) {
+              this.optionsbuttons[i].style.height = '113%'; // Change '50px' to the height you want
+          }
+            break;
+          case 6:
+            // Select all elements with the class 'button'
+            for(var i = 0; i < this.optionsbuttons.length; i++) {
+              this.optionsbuttons[i].style.height = '94%'; // Change '50px' to the height you want
+          }
+            
+            break;
+          default:
+            console.log("The array has more than 6 elements or is empty.");
+        }
+      }
+
       if ("showApplyButton" in changedProperties) {
         var temp = changedProperties["showApplyButton"];
         if (temp === true) {
@@ -1362,60 +1585,45 @@ body {font-family: Verdana, sans-serif;}
         }
       }
 
-      // if ("color" in changedProperties) {
-      //   this.dispatchEvent(new CustomEvent("propertiesChanged", {
-      //     detail: {
-      //       properties: {
-      //         startPeriod: this.gStartPeriod,
-      //         endPeriod: this.gEndPeriod,
-      //         startMonth: this.startMonth,
-      //         startYear: this.startYear,
-      //         endMonth: this.endMonth,
-      //         endYear: this.endYear,
-      //         selectedTimeFrame: this.selectedTimeFrame
-      //       }
-      //     }
-      //   }));
-      //   // this._setCSSBetween(this.gDisplayText,this.prevoiusbuttonText,this.nextbuttonText);
-      //   this.click();
-
-      // }
       if ("startPeriod" in changedProperties) {
         this.gStartPeriod = changedProperties["startPeriod"];
         // this._toggleOptionButton(changedProperties["selectedTimeFrame"],this.gDisplayText)
         this._setCSSBetween(this.gDisplayText, this.prevoiusbuttonText, this.nextbuttonText);
-
       }
 
       if ("endPeriod" in changedProperties) {
         console.log("END PERIOD SELECTED ");
         this.gEndPeriod = changedProperties["endPeriod"];
         // this._toggleOptionButton(changedProperties["selectedTimeFrame"],this.gDisplayText)
-        this._setCSSBetween(this.gDisplayText, this.prevoiusbuttonText, this.nextbuttonText);
+        this.startPeriodSAC=this.gStartPeriod;
+        this.endPeriodSAC=this.gEndPeriod;
+       // this.ResetActiveButton=this.activeButton;
+       
 
         this.dispatchEvent(new CustomEvent("propertiesChanged", {
           detail: {
             properties: {
+             // selectedTimeFrame: this.selectedTimeFrame,
               startPeriod: this.startPeriod,
               endPeriod: this.endPeriod,
               startMonth: this.startMonth,
               startYear: this.startYear,
               endMonth: this.endMonth,
               endYear: this.endYear,
-              //selectedTimeFrame: this.selectedTimeFrame
             }
           }
         }));
-
-        console.log("NEW START AND END  = "+ this.startPeriod +" - "+ this.endPeriod);
+ this._setCSSBetween(this.gDisplayText, this.prevoiusbuttonText, this.nextbuttonText);
+        console.log("NEW START AND END  = "+ this.gStartPeriod +" - "+ this.gEndPeriod);
       }
 
       if ("selectedTimeFrame" in changedProperties) {
         
+       
         var time = changedProperties["selectedTimeFrame"];
         console.log("SELECTED TIME FRAME IN CHANGED PROPS. = "+ time);
-        if (time === "_YTDButton") {
-          this._updateSelectedOptionOnResetAction(this._YTDButton);
+        if (time === "YTDButton") {
+          this._updateSelectedOptionOnResetAction(this.YTDButton);
         } else if (time === "DETButton") {
           this._updateSelectedOptionOnResetAction(this.DetailButton);
         } else if (time === "MATButton") {
@@ -1428,93 +1636,32 @@ body {font-family: Verdana, sans-serif;}
           this._updateSelectedOptionOnResetAction(this.SingleMonthButton);
         } else {
         }
+
+        this.ResetActiveButton=this.activeButton;
+        console.log("Selted time frame = "+this.activeButton)
       }
+
 
       //only do if apply button is hidden and you want to apply the new dates range
 
       if ("selectedAction" in changedProperties) {
 
-        //check if start and end period are okay here 
-        var temp = changedProperties["selectedAction"]
-        //call _submit function 
-        if (temp === "submit") {
-
-          if (this.startPeriod !== "" && this.endPeriod !== "") {
-            this.ResetActiveButton = this.activeButton.id
-          } else {
-            this.ResetActiveButton = "_YTDButton";
-          }
-
-          if (this.gDisplayText === "Select dates" || this.gEndPeriod === "select end" || this.gEndPeriod === "") {
-            //display error popup 
-            this._showPopup();
-          } else {
-            this.dispatchEvent(new CustomEvent("propertiesChanged", {
-              detail: {
-                properties: {
-                  startPeriod: this.startPeriod,
-                  endPeriod: this.endPeriod,
-                  startMonth: this.startMonth,
-                  startYear: this.startYear,
-                  endMonth: this.endMonth,
-                  endYear: this.endYear,
-                  selectedTimeFrame: this.selectedTimeFrame
-                }
-              }
-            }));
-          }
-
-        } else if (temp === "Reset") {
-          changedProperties["selectedTimeFrame"]
-          //var time = this.selectedTimeFrame//changedProperties["selectedTimeFrame"];
-          var time = this.ResetActiveButton;
-          if (time === "_YTDButton") {
-            this._updateSelectedOptionOnResetAction(this._YTDButton);
-          } else if (time === "DETButton") {
-            this._updateSelectedOptionOnResetAction(this.DetailButton);
-          } else if (time === "MATButton") {
-            this._updateSelectedOptionOnResetAction(this.MATButton);
-          } else if (time === "QTDButton") {
-            this._updateSelectedOptionOnResetAction(this.QTDButton);
-          } else if (time === "MQTButton") {
-            this._updateSelectedOptionOnResetAction(this.MQTButton);
-          } else if (time === "MonthButton") {
-            this._updateSelectedOptionOnResetAction(this.SingleMonthButton);
-          } else {
-
-          }
-
-          this.dispatchEvent(new CustomEvent("propertiesChanged", {
-            detail: {
-              properties: {
-                //selectedTimeFrame: this.gPlaceholderActiveButton,
-                startPeriod: this.startPeriod,
-                endPeriod: this.endPeriod,
-                startMonth: this.startMonth,
-                startYear: this.startYear,
-                endMonth: this.endMonth,
-                endYear: this.endYear,
-
-
-              }
+        console.log("changedProperties[selectedAction] = "+changedProperties["selectedAction"]);
+       if(changedProperties["selectedAction"]==="Reset"){
+            this._submitReset();   
             }
-          }));
-        }
-
-      }
-      // if ("selectedTimeFrame" in changedProperties) {
-      //   var temp;
-      //   console.log("selectedTimeFramein changed properties: "+changedProperties["selectedTimeFrame"]);
-      //   temp=changedProperties["selectedTimeFrame"];
-      //   console.log(temp);
-      //   //setCSSBetween();
-      // }
+            else if(changedProperties["selectedAction"]==="Apply"){
+              console.log("APPLY CLICKED")
+              this._submitApply();
+          }
+       
 
     }
 
-
+  }
 
     _updateSelectedOptionOnResetAction(button1) {
+  
       if (this.activeButton !== null) {
         this.activeButton.classList.remove("active");
       }
@@ -1525,6 +1672,9 @@ body {font-family: Verdana, sans-serif;}
         //this.activeButton = null;
         button1.classList.add("active");
       }
+
+
+      this._setDateText();
     }
 
     // decreases the year range by one
@@ -1550,7 +1700,7 @@ body {font-family: Verdana, sans-serif;}
       this._clearPeriodCSS();
       if (this.activeButton.id === "MATButton") {
         this._setCSSBetween_MAT(this.gDisplayText, this.prevoiusbuttonText, this.nextbuttonText);
-      } else if (this.activeButton.id === "_YTDButton") {
+      } else if (this.activeButton.id === "YTDButton") {
         this._setCSSBetween_YTD(this.prevoiusbuttonText, this.nextbuttonText);
       } else if (this.activeButton.id === "DETButton") {
         this._setCSSBetween(this.gDisplayText, this.prevoiusbuttonText, this.nextbuttonText);
@@ -1573,6 +1723,7 @@ body {font-family: Verdana, sans-serif;}
       if (match) {
         result = match[1]; // Get the first captured group
       } else {
+
       }
       return result;
     }
@@ -1615,5 +1766,5 @@ body {font-family: Verdana, sans-serif;}
 
     }
   }
-  customElements.define('month-picker2-main', MonthPicker2)
+  customElements.define('month-picker-main', MonthPicker)
 })()
